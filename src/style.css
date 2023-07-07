@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@font-face {
+  font-family: 'Nutmeg Ultra';
+  src: url('../appassets/font/Nutmeg-UltraBlack.woff2') format('woff2'),
+      url('../appassets/font/Nutmeg-UltraBlack.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nutmeg';
+  src: url('../appassets/font/Nutmeg-Regular.woff2') format('woff2'),
+      url('../appassets/font/Nutmeg-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nutmeg';
+  src: url('../appassets/font/Nutmeg-Bold.woff2') format('woff2'),
+      url('../appassets/font/Nutmeg-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+html{
+  @apply text-[11px] sm:text-[13px] md:text-base;
+  max-width: 100%;
+}
+
+:root {
+  font-family: nutmeg, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color-scheme: light dark;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  @apply text-slate-600 dark:text-slate-100
+}
+
+
+html, #app{
+  @apply h-screen w-screen bg-rose-600;
+  max-height: -webkit-fill-available !important;
+}
+#app{
+  @apply p-2 flex justify-center items-center flex-col;
+}
+
+.oda-screen{
+  @apply flex justify-center items-center flex-1 w-full h-full grow shrink bg-white dark:bg-neutral rounded flex-col p-2;
+  max-height: -webkit-fill-available !important;
+}
+
+.button{
+  @apply
+    transition-all
+    duration-500
+    ease-in-out
+    border-slate-500
+    bg-slate-100
+    py-1
+    px-2
+    rounded-lg
+    shadow-md shadow-slate-500/50
+    border-[1px]
+    border-b-4
+    text-slate-500
+  ;
+}
+.button:hover{
+  @apply transition-all border-slate-400
+}
+.button:active{
+  @apply
+    transition-all
+    translate-y-1
+    border-b-2
+    shadow-none
+  ;
+}
+
+.btn{
+  text-transform: none;
+}
+
+
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.primary') #fff;
+}
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  max-height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 2px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: theme('colors.primary');
+  border-radius: 4px;
+  border: 2px solid #fff;
+}
+
+
+/* MODULES */
+.draggable .btn{
+  font-size: inherit !important;
+  height: auto !important;
+}
+
+[data-name="mojs-shape"]{
+  pointer-events: none;
+}
+
+
+
+
+.vjs-big-play-button{
+  @apply  !btn-primary ;
+}
+.vjs-control-bar{
+  @apply !bg-primary/50;
+}
+
+
+.builder #app{
+  @apply bg-secondary;
+}
+.freeze #app{
+  @apply bg-info;
+}
+
+
+.teacher [data-eval="manual"]{
+  @apply ring-4 ring-info;
+}
+
+
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {  
+  opacity: 0;
+}
