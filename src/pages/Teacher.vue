@@ -209,7 +209,7 @@ onMounted(() => {
     // DEBUGG
 
     setTimeout(() => {
-        debugFn()
+        //debugFn()
     }, 1000);
 
 
