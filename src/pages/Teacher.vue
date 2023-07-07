@@ -33,7 +33,7 @@
                     <iconify-icon v-else icon="solar:double-alt-arrow-down-bold"></iconify-icon>
                 </div>
                 <!-- start activity -->
-                <div class="text-center my-6" v-if="!started">
+                <div class="text-center my-6" v-if="!started && users.length>0" >
                     <button class="button animate__animated animate__tada" @click="startActivity">Start activity</button>
                 </div>
                 
@@ -137,14 +137,12 @@ const nextQuestion = () => {
 const startActivity = () => {
     
     new Howl({ src: [soundStart], volume: 0.6, autoplay:true })
-    setTimeout(()=>{
-        started.value = true
-        visibleusers.value = false
-    
-        const message = { type: 'startActivity', from: 'teacher', data: {} }
-        window.parent.postMessage(message, '*');
-        console.log('startActivity', message)
-    }, 500)
+    started.value = true
+    visibleusers.value = false
+    const message = { type: 'startActivity', from: 'teacher', data: {} }
+    window.parent.postMessage(message, '*');
+    console.log('startActivity', message)
+
 
     
 
@@ -207,7 +205,7 @@ onMounted(() => {
     window.addEventListener('message', handleMessage);
 
     // DEBUGG
-
+    console.log('mmm')
     setTimeout(() => {
         //debugFn()
     }, 1000);

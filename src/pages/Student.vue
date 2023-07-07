@@ -95,15 +95,9 @@ const nextQuestion = (data) => {
 }
 
 const startActivity = () => {
-    
     new Howl({ src: [soundStart], volume: 0.6, autoplay:true })
-    setTimeout(()=>{
-        started.value = true
-        console.log('startActivity')
-    }, 500)
-
-    
-
+    started.value = true
+    console.log('startActivity')
 }
 
 const addActivity = (data) => {
