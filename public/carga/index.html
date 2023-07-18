@@ -17,10 +17,11 @@
             <pre class="p-4 bg-gray-800 text-white rounded mb-4">
                 <code>
                     window.addEventListener('message', (event) => {
-                        // Ensure the event is from the expected origin
-                        
-                        // The data sent with postMessage is stored in event.data
-                        console.log(event.data);
+                        const data = event.data;
+                        if (typeof data === 'object' && data !== null && data.type === 'saveActivity') {
+                            // The data sent with postMessage is stored in event.data
+                            console.log(data);
+                        }
                     });
                 </code>
             </pre>
@@ -31,13 +32,14 @@
     </div>
     <script>
         window.addEventListener('message', (event) => {
-            // Ensure the event is from the expected origin
+            const data = event.data;
+            if (typeof data === 'object' && data !== null && data.type === 'saveActivity') {
+                // The data sent with postMessage is stored in event.data
+                console.log(data);
             
-            // The data sent with postMessage is stored in event.data
-            console.log(event.data);
-
-            // Display the data in the messageOutput pre element
-            document.getElementById('messageOutput').innerText = JSON.stringify(event.data, null, 2);
+                // Display the data in the messageOutput pre element
+                document.getElementById('messageOutput').innerText = JSON.stringify(data, null, 2);
+            }
         });
     </script>
 </body>
