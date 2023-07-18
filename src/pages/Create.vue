@@ -137,7 +137,7 @@ const addQuestion = () => {
       }
 const saveAndCreateActivity = () => {
         const message = {type:'saveActivity', data:JSON.parse(JSON.stringify(activity.value))}
-        window.postMessage(message, '*');
+        parent.window.postMessage(message, '*');
         console.log('%cpostMessage:', 'background: #ffdd00;', message)
         saved.value = true
         setTimeout(()=>{
