@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css';
+    </style>
+</head>
+<body>
+    <div class="p-4 md:flex md:items-start">
+        <div class="md:w-1/2 mb-4 md:mb-0 md:mr-4">
+            <div class="bg-gray-800 text-white p-5">https://colab.odas.win/#/create</div>
+            <iframe id="myiframe" class="w-full h-96" src="https://colab.odas.win/#/create"></iframe>
+        </div>
+        <div class="md:w-1/2">
+            <pre class="p-4 bg-gray-800 text-white rounded mb-4">
+                <code>
+// Recibir datos
+window.addEventListener('message', (event) => {
+    const { type, data } = event.data;
+    if (type === 'saveActivity') {
+        console.log('Datos de actividad:', data);
+    }
+});
+                </code>
+            </pre>
+            <pre id="messageOutput" class="p-4 bg-gray-800 text-white rounded">
+// Datos
+                <!-- This is where the message data will be displayed -->
+            </pre>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('message', (event) => {
+        const { type, data } = event.data;
+            if (type === 'saveActivity') {
+                console.log('Datos de actividad:', data);
+                document.getElementById('messageOutput').innerText = JSON.stringify(data, null, 2);
+            }
+        });
+    
+    </script>
+</body>
+</html>
