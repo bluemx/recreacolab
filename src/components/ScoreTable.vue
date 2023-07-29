@@ -1,5 +1,6 @@
 <template>
 <div class="w-full overflow-x-auto p-1  v-auto-animate">
+
     <div class="flex gap-1 " v-auto-animate v-if="!end">
         <div v-auto-animate class="animate__animated animate__bounceIn w-40 shrink-0 grow-0 bg-slate-100  text-neutral rounded p-1 tex-center text-xs flex justify-center items-center flex-col" v-for="(item, index) in sorter" :key="item.id+index+item.score" :class="[]">
             <div class="w-6 h-6 bg-accent flex justify-center items-center rounded-full">{{ index+1 }}</div>

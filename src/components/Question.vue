@@ -1,6 +1,6 @@
 <template>
 <div class="bg-slate-100 p-5 rounded shadow-xl animate__animated animate__zoomIn text-neutral">
-    <div class="my-1 text-center" v-if="view!='create'"><Counter :time="time" @end="endFn"></Counter></div>
+    <div class="my-1 text-center" v-if="view!='create' && time>0"><Counter :time="time" @end="endFn"></Counter></div>
     <div class="text-center text-xl my-4">
         {{ quest.text }}
     </div>
@@ -12,9 +12,11 @@
             </div>
             
             <div v-if="view=='teacher'" class="flex flex-wrap justify-between gap-0.5 my-1 bg-slate-300 p-1 rounded max-h-16 overflow-y-auto">
-                <div v-for="(Ritem, Rindex) in responders[index]" :key="Rindex" class="text-xs bg-white rounded-full px-1">
-                    {{ getInitials(Ritem.name) }}
-                </div>
+                <template v-for="(Ritem, Rindex) in responders[index]">
+                    <div  :key="Rindex" class="text-xs bg-white rounded-full px-1" v-if="visible(Ritem?.id)">
+                        {{ getInitials(Ritem.name) }}
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -31,8 +33,22 @@ const props = defineProps ({
     quest: Object,
     view: String,
     time: Number,
-    responders: Object
+    responders: Object,
+    freezeuserid: [Boolean, String]
 })
+
+const visible = (theid) => {
+    if(!theid){ return false }
+    if(props.freezeuserid) {
+        if(theid == props.freezeuserid){
+            return true
+        } else {
+            return false
+        }
+    } else {
+        return true
+    }
+}
 
 const emits = defineEmits(['response', 'end'])
 
@@ -46,6 +62,7 @@ const endFn = () => {
     emits('end', true)
 }
 
+if(props.time==0){ end.value = true }
 
 
 function getInitials(name) {

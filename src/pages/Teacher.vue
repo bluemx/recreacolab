@@ -111,7 +111,17 @@ const scoreFN = () => {
 const endActivity = () => {
     ended.value = true
     const finalScores = JSON.parse(JSON.stringify(usersScore.value))
-    const message = { type: 'endActivity', from: 'teacher', data: finalScores }
+
+
+    const message = { type: 'endActivity', from: 'teacher', data: finalScores,
+        inputs: JSON.stringify({
+            activity: JSON.parse(JSON.stringify(activity.value)),
+            responders: JSON.parse(JSON.stringify(responders.value)),
+            users: JSON.parse(JSON.stringify(users.value)),
+            score: JSON.parse(JSON.stringify(score.value)),
+            usersScore: JSON.parse(JSON.stringify(usersScore.value))
+        })
+     }
     window.parent.postMessage(message, '*');
     console.log('endActivity', message)
 }
@@ -131,7 +141,7 @@ const nextQuestion = () => {
     currentQuestion.value++
     const message = { type: "nextQuestion", from: 'teacher', data: { index: currentQuestion.value } }
     window.parent.postMessage(message, "*")
-    console.log('nextQuestion', message)
+    //console.log('nextQuestion', message)
 }
 
 const startActivity = () => {
@@ -141,15 +151,11 @@ const startActivity = () => {
     visibleusers.value = false
     const message = { type: 'startActivity', from: 'teacher', data: {} }
     window.parent.postMessage(message, '*');
-    console.log('startActivity', message)
-
-
-    
-
+    //console.log('startActivity', message)
 }
 
 const addActivity = (data) => {
-    console.log('addActivity', data)
+    //console.log('addActivity', data)
     activity.value = data
     loading.value = false
 
@@ -162,11 +168,11 @@ const addActivity = (data) => {
     }
 }
 const userConnected = (data) => {
-    console.log('userConnected', data)
+    //console.log('userConnected', data)
     users.value = data
 }
 const addResponder = (data) => {
-    console.log('addResponder', data)
+    //console.log('addResponder', data)
     const user = users.value.filter(user=>user.id === data.id)
     if(user.length){
         responders.value[currentQuestion.value][data.index].push(user[0])
