@@ -63,7 +63,11 @@
             <div class="text-center text-3xl font-bold py-5 text-white">{{ activity.name }} results:</div>
         </template>
         <ScoreTable :data="score" :users="users" :end="ended" @score="setUserScore"></ScoreTable>
-
+        <template v-if="ended">
+            <div class="w-full mx-auto text-centr">
+                <button class="button animate__animated animate__tada" @click="exitActivity">Exit from activity</button>
+            </div>
+        </template>
     </div>
     
 </template>
@@ -124,6 +128,12 @@ const endActivity = () => {
      }
     window.parent.postMessage(message, '*');
     console.log('endActivity', message)
+}
+
+const exitActivity = () => {
+    const message = { type: 'exitActivity', from: 'teacher'}
+    window.parent.postMessage(message, '*');
+    console.log('exitActivity', message)
 }
 
 const endFn = () => {
