@@ -64,7 +64,7 @@
         </template>
         <ScoreTable :data="score" :users="users" :end="ended" @score="setUserScore"></ScoreTable>
         <template v-if="ended">
-            <div class="w-full mx-auto text-centr">
+            <div class="w-full mx-auto text-center my-2">
                 <button class="button animate__animated animate__tada" @click="exitActivity">Exit from activity</button>
             </div>
         </template>
