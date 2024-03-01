@@ -1,16 +1,16 @@
 <template>
+    <div class="grid-cols-4"></div>
 <div class="bg-slate-100 p-5 rounded shadow-xl animate__animated animate__zoomIn text-neutral">
     <div class="my-1 text-center" v-if="view!='create' && time>0"><Counter :time="time" @end="endFn"></Counter></div>
     <div class="text-center text-xl my-4">
         {{ quest.text }}
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-1 my-6">
+    <div :class="['grid grid-cols-1 gap-1 my-6', 'md:grid-cols-'+quest.options.length]">
         <div  v-for="(item, index) in quest.options" :key="index">
-            <div class="relative p-4 text-center rounded " :class="[(choosed==index?'outline-8 outline-dashed outline-info mx-4':''),  !end ? opcolor(index): opcorrect(index) , (!end && view=='student' && choosed==null) ? 'hover:bg-primary hover:text-white cursor-pointer':'' ]" @click="selected(index)">
+            <div class="relative h-full p-4 text-center rounded " :class="[(choosed==index?'outline-8 outline-dashed outline-info mx-4':''),  !end ? opcolor(index): opcorrect(index) , (!end && view=='student' && choosed==null) ? 'hover:bg-primary hover:text-white cursor-pointer':'' ]" @click="selected(index)">
                 <img :src="shape[index]" class="w-6 mx-auto my-2">
                 {{ item }}
             </div>
-            
             <div v-if="view=='teacher'" class="flex flex-wrap justify-between gap-0.5 my-1 bg-slate-300 p-1 rounded max-h-16 overflow-y-auto">
                 <template v-for="(Ritem, Rindex) in responders[index]">
                     <div  :key="Rindex" class="text-xs bg-white rounded-full px-1" v-if="visible(Ritem?.id)">
@@ -28,6 +28,7 @@
 import sh1 from '../assets/sh1.svg'
 import sh2 from '../assets/sh2.svg'
 import sh3 from '../assets/sh3.svg'
+import sh4 from '../assets/sh4.svg'
 
 const props = defineProps ({
     quest: Object,
@@ -53,7 +54,7 @@ const visible = (theid) => {
 const emits = defineEmits(['response', 'end'])
 
 const end = ref(false)
-const shape = [sh1, sh2, sh3]
+const shape = [sh1, sh2, sh3, sh4]
 
 const choosed = ref(null)
 
@@ -81,6 +82,7 @@ const opcolor = (ind) => {
     if(ind==0){ return 'bg-accent'}
     if(ind==1){ return 'bg-secondary'}
     if(ind==2){ return 'bg-success'}
+    if(ind==3){ return 'bg-slate-400'}
 }
 
 const opcorrect = (ind) => {
@@ -88,6 +90,7 @@ const opcorrect = (ind) => {
         if(ind==0){ return 'bg-accent'}
         if(ind==1){ return 'bg-secondary'}
         if(ind==2){ return 'bg-success'}
+        if(ind==3){ return 'bg-slate-400'}
     } else {
         return 'bg-slate-300 opacity-60'
     }
