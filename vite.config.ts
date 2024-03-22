@@ -12,6 +12,7 @@ import crossOriginIsolation from 'vite-plugin-cross-origin-isolation'
 // https://vitejs.dev/config/
 export default defineConfig({
   //base: '/collaborative/',
+  //base: '/odascourses/collaborative/',
   server:{
     https: true
   },

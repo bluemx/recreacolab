@@ -112,24 +112,22 @@ const scoreFN = () => {
         score.value[responder.id] += 100 + bonus
     }
 
-    /*
-    const wrongResponders = responders.value[currentQuestion.value]
-    for(var ans in wrongResponders){
-        if(ans!==rightanswer){
-            for(var r in wrongResponders[ans]){
-                var responder = wrongResponders[ans][r]
-                console.log('wrong:', responder)
-            }
-        }
-    }
-    */
+ 
 
 }
 
 const endActivity = () => {
     ended.value = true
+    
+    /* Add Scores at 0 */
+    for(var i in users.value){
+        if(!users.value[i].score){
+            users.value[i].score = 0
+            usersScore.value.push(users.value[i])
+        }
+    }
+    
     const finalScores = JSON.parse(JSON.stringify(usersScore.value))
-
 
     const message = { type: 'endActivity', from: 'teacher', data: finalScores,
         inputs: JSON.stringify({
@@ -196,7 +194,7 @@ const userConnected = (data) => {
     users.value = data
 }
 const addResponder = (data) => {
-    console.log('addResponder', data)
+
     const user = users.value.filter(user=>user.id === data.id)
     if(user.length){
         responders.value[currentQuestion.value][data.index].push(user[0])
@@ -235,7 +233,7 @@ onMounted(() => {
     window.addEventListener('message', handleMessage);
 
     // DEBUGG
-    console.log('mmm')
+
     setTimeout(() => {
         //debugFn()
     }, 1000);
