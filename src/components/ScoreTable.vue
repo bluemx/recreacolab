@@ -1,6 +1,5 @@
 <template>
-<div class="w-full overflow-x-auto p-1  v-auto-animate">
-
+<div class="w-full overflow-x-auto p-1  v-auto-animate" id="scoretable">
     <div class="flex gap-1 " v-auto-animate v-if="!end">
         <div v-auto-animate class="animate__animated animate__bounceIn w-40 shrink-0 grow-0 bg-slate-100  text-neutral rounded p-1 tex-center text-xs flex justify-center items-center flex-col" v-for="(item, index) in sorter" :key="item.id+index+item.score" :class="[]">
             <div class="w-6 h-6 bg-accent flex justify-center items-center rounded-full">{{ index+1 }}</div>
@@ -8,7 +7,6 @@
             <div class="font-extrabold text-lg">{{ item.score }}</div>
         </div>
     </div>
-
     <div class="flex flex-col gap-1 justify-center items-center flex-wrap py-10"  v-auto-animate v-else>
         <div v-auto-animate class="animate__animated animate__bounceIn w-40 shrink-0 grow-0 bg-slate-100/60 text-neutral rounded p-1 tex-center text-xs flex justify-center items-center flex-col" v-for="(item, index) in sorter" :key="item.id+index+item.score" :class="[index==0?'!w-96 !bg-success text-white':'', index==1?'!w-80 !bg-success/90 text-white':'', , index==2?'!w-60 !bg-success/80 text-white':'']">
             <div class="w-6 h-6 bg-accent flex justify-center items-center rounded-full" :class="[index==0?'shadow-accent shadow-xl animate-bounce':'']">{{ index+1 }}</div>

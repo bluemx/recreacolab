@@ -63,6 +63,8 @@
             <div class="text-center text-3xl font-bold py-5 text-white">{{ activity.name }} results:</div>
         </template>
         <ScoreTable :data="score" :users="users" :end="ended" @score="setUserScore"></ScoreTable>
+
+
         <template v-if="ended">
             <div class="w-full mx-auto text-center my-2">
                 <button class="button animate__animated animate__tada" @click="exitActivity">Exit from activity</button>
@@ -92,7 +94,6 @@ const usersScore = ref(null)
 
 
 const setUserScore = ($ev) => {
-    console.log('setuserscore:', $ev)
     usersScore.value = JSON.parse(JSON.stringify($ev))
 }
 const scoreFN = () => {
@@ -110,6 +111,19 @@ const scoreFN = () => {
         if(r==2){ bonus = bonusValue*2 }
         score.value[responder.id] += 100 + bonus
     }
+
+    /*
+    const wrongResponders = responders.value[currentQuestion.value]
+    for(var ans in wrongResponders){
+        if(ans!==rightanswer){
+            for(var r in wrongResponders[ans]){
+                var responder = wrongResponders[ans][r]
+                console.log('wrong:', responder)
+            }
+        }
+    }
+    */
+
 }
 
 const endActivity = () => {
@@ -182,7 +196,7 @@ const userConnected = (data) => {
     users.value = data
 }
 const addResponder = (data) => {
-    //console.log('addResponder', data)
+    console.log('addResponder', data)
     const user = users.value.filter(user=>user.id === data.id)
     if(user.length){
         responders.value[currentQuestion.value][data.index].push(user[0])

@@ -1,5 +1,8 @@
 <template>
-    <div class="grid-cols-4"></div>
+    <div class="grid-cols-4 md:grid-cols-4"></div>
+    <div class="grid-cols-3 md:grid-cols-3"></div>
+    <div class="grid-cols-2 md:grid-cols-2"></div>
+    <div class="grid-cols-1 md:grid-cols-1"></div>
 <div class="bg-slate-100 p-5 rounded shadow-xl animate__animated animate__zoomIn text-neutral">
     <div class="my-1 text-center" v-if="view!='create' && time>0"><Counter :time="time" @end="endFn"></Counter></div>
     <div class="text-center text-xl my-4">
