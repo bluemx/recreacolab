@@ -4,7 +4,7 @@
     
     <div class="flex flex-col h-full w-full"  v-if="!loading && activity">
         <div class="oda-screen overflow-auto" v-if="!ended">
-            <div class="min-h-fit m-auto overflow-auto max-h-full py-2 px-5 w-full">
+            <div class="min-h-96 m-auto overflow-auto max-h-full py-2 px-5 w-full">
                 <!-- activity info-->
                 <div class="text-center text-3xl font-bold">{{ activity.name }}</div>
                 <template v-if="!started">

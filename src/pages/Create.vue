@@ -1,7 +1,7 @@
 <template>
 <div class="flex flex-col h-full w-full">
         <div class="oda-screen overflow-auto">
-            <div class="min-h-fit m-auto overflow-auto max-h-full py-2 px-5 w-full">
+            <div class="min-h-96 m-auto overflow-auto max-h-full py-2 px-5 w-full">
 
     <div class="max-w-2xl mx-auto mt-4 p-4 bg-white shadow" v-if="!previewMode">
         <h1 class="text-2xl font-bold mb-4 text-neutral">Create Activity</h1>
